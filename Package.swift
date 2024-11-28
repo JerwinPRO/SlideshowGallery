@@ -5,20 +5,30 @@ import PackageDescription
 
 let package = Package(
     name: "SlideshowGallery",
+    platforms: [
+        .iOS(.v13),
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "SlideshowGallery",
             targets: ["SlideshowGallery"]),
+    ],
+    dependencies: [
+        .package(
+            url: "https://github.com/onevcat/Kingfisher.git",
+            from: "8.1.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SlideshowGallery"),
+            name: "SlideshowGallery",
+            dependencies: [],
+            path: "Sources/SlideshowGallery"),
         .testTarget(
             name: "SlideshowGalleryTests",
-            dependencies: ["SlideshowGallery"]
+            dependencies: ["SlideshowGallery"],
+            path: "Tests/SlideshowGalleryTests"
         ),
     ]
 )
