@@ -23,7 +23,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "SlideshowGallery",
-            dependencies: [],
+            dependencies: ["Kingfisher"],
             path: "Sources/SlideshowGallery"),
         .testTarget(
             name: "SlideshowGalleryTests",
