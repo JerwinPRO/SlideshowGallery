@@ -17,12 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Swift
-    - uses: SwiftyLab/setup-swift@latest
+      uses: SwiftyLab/setup-swift@latest
     - name: Get swift version
       run: swift --version
-    - name: Get swift version in macOS
-      if: runner.os == 'macOS'
-      run: xcrun --toolchain ${{ env.TOOLCHAINS }} swift --version
     - name: Build
       run: swift build
     - name: Run tests
