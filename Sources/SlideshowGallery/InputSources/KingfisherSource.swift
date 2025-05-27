@@ -5,10 +5,18 @@
 //  Created by Jerwin Metromart on 11/28/24.
 //
 
+#if canImport(UIKit)
 import UIKit
+#endif
+
+#if canImport(AppKit)
+import AppKit
+#endif
+
 #if SWIFT_PACKAGE
 import SlideshowGallery
 #endif
+
 import Kingfisher
 
 public class KingfisherSource: NSObject, InputSource {
