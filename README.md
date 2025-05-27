@@ -1,59 +1,145 @@
 # Product Details Slideshow Gallery
-> Short blurb about what your product does.
 
 [![Swift Version][swift-image]][swift-url]
 [![License][license-image]][license-url]
-[![codebeat-badge][codebeat-image]][codebeat-url]
+[![Codebeat Badge][codebeat-image]][codebeat-url]
 
-Customizable Swift product image slideshow featuring paginated scrolling, a timer, and a full-screen viewer.
+**SlideshowGallery** is a customizable Swift library for creating a product image slideshow. It features paginated scrolling, an automatic timer, and a full-screen image viewer, making it ideal for e-commerce and product showcase applications.
 
-![Simulator Screen Recording - iPhone 16 Pro Max - 2024-12-03 at 16 52 11](https://github.com/user-attachments/assets/43ae305c-3838-4d56-b3d3-e4cd881f7d2c)
+## Features
+
+- **Paginated Scrolling:** Seamlessly swipe through images with pagination indicators.
+- **Timer-Based Sliding:** Automatically transition between images at customizable intervals.
+- **Full-Screen Viewer:** Tap on any image to view it in a full-screen interactive mode.
+- **Customizable UI:** Tailor the look and feel to match your app's design.
+- **Lightweight:** Minimal dependencies for easy integration.
+
+---
 
 ## Installation
 
-Add this project on your `Package.swift`
+### Swift Package Manager (Recommended)
+Add the following to your `Package.swift` file:
 
 ```swift
 import PackageDescription
 
 let package = Package(
     dependencies: [
-        .Package(url: "https://github.com/JerwinPRO/SlideshowGaller.git", majorVersion: 0, minor: 0)
+        .package(url: "https://github.com/JerwinPRO/SlideshowGallery.git", from: "0.0.1")
     ]
 )
 ```
 
-## Usage example
+Or integrate it directly in Xcode:
+1. Go to **File > Add Packages**.
+2. Enter the repository URL: `https://github.com/JerwinPRO/SlideshowGallery.git`.
+3. Select the version rule and add it to your project.
 
+---
 
+## Usage
+
+### Basic Setup
+
+1. Import the library into your Swift file:
+    ```swift
+    import SlideshowGallery
+    ```
+
+2. Initialize and configure the slideshow:
+    ```swift
+    let slideshow = SlideshowGallery()
+    slideshow.images = [
+        UIImage(named: "image1")!,
+        UIImage(named: "image2")!,
+        UIImage(named: "image3")!
+    ]
+    slideshow.autoScrollInterval = 3.0 // Set auto-scroll every 3 seconds
+    view.addSubview(slideshow)
+    ```
+
+3. Add constraints or frame settings to position the slideshow:
+    ```swift
+    slideshow.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+        slideshow.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        slideshow.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        slideshow.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+        slideshow.heightAnchor.constraint(equalToConstant: 200)
+    ])
+    ```
+
+### Full-Screen Viewer
+
+Enable the full-screen viewer with a tap gesture:
 ```swift
-import Project
-let proj = Class(param: String?)
-proj.run()
+slideshow.enableFullScreenViewer = true
 ```
 
+---
 
-## Development setup
+## Development Setup
 
-Describe how to install all development dependencies and how to run an automated test-suite of some kind. Potentially do this for multiple platforms.
+To set up the project for development:
 
-```sh
-make install
-```
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/JerwinPRO/SlideshowGallery.git
+    cd SlideshowGallery
+    ```
+
+2. Install dependencies:
+    ```sh
+    make install
+    ```
+
+3. Run the test suite:
+    ```sh
+    make test
+    ```
+
+---
+
+## Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+    ```sh
+    git checkout -b feature/your-feature-name
+    ```
+3. Commit your changes:
+    ```sh
+    git commit -m "Add your commit message here"
+    ```
+4. Push to your branch:
+    ```sh
+    git push origin feature/your-feature-name
+    ```
+5. Create a pull request on GitHub.
+
+---
+
+## License
+
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+---
 
 ## Meta
 
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+**Author**: [JerwinPRO](https://github.com/JerwinPRO)  
+**Contact**: project@jerwinpastoral.com
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+For more information, visit the [GitHub repository](https://github.com/JerwinPRO/SlideshowGallery).
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+---
 
-[swift-image]:https://img.shields.io/badge/swift-3.0-orange.svg
+[swift-image]: https://img.shields.io/badge/swift-5.0-orange.svg
 [swift-url]: https://swift.org/
 [license-image]: https://img.shields.io/badge/License-MIT-blue.svg
 [license-url]: LICENSE
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [codebeat-image]: https://codebeat.co/badges/c19b47ea-2f9d-45df-8458-b2d952fe9dad
 [codebeat-url]: https://codebeat.co/projects/github-com-vsouza-awesomeios-com
