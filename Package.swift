@@ -6,8 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SlideshowGallery",
     platforms: [
-        .iOS(.v13),
-        .macOS(.v10_15)
+        .iOS(.v13)
     ],
     products: [
         .library(
@@ -19,7 +18,7 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "SlideshowGallery",
-            dependencies: ["Kingfisher"],
+            dependencies: [],
             path: "Sources/SlideshowGallery"),
         .testTarget(
             name: "SlideshowGalleryTests",

@@ -1,10 +1,4 @@
-#if canImport(UIKit)
 import UIKit
-#endif
-
-#if canImport(AppKit)
-import AppKit
-#endif
 
 @objc
 public protocol SlideshowGalleryDelegate: AnyObject {
