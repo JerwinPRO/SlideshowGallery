@@ -5,7 +5,9 @@
 //  Created by Jerwin Metromart on 11/27/24.
 //
 
+#if canImport(UIKit)
 import UIKit
+#endif
 
 @MainActor
 public protocol ActivityIndicatorView {

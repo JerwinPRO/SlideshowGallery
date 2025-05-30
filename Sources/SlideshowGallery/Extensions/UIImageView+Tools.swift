@@ -4,8 +4,9 @@
 //
 //  Created by Jerwin Metromart on 11/28/24.
 //
-
+#if canImport(UIKit)
 import UIKit
+#endif
 
 extension UIImageView {
 
