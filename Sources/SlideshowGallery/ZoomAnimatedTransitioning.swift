@@ -47,7 +47,8 @@ class ZoomAnimatedTransitioningDelegate: NSObject, UIViewControllerTransitioning
     }
 
     @objc func handleSwipe(_ gesture: UIPanGestureRecognizer) {
-        guard let referenceSlideshowController = referenceSlideshowController else {
+        guard let referenceSlideshowController = referenceSlideshowController,
+              let refView = referenceSlideshowView else {
             return
         }
 
@@ -59,19 +60,13 @@ class ZoomAnimatedTransitioningDelegate: NSObject, UIViewControllerTransitioning
         } else if gesture.state == .changed {
             interactionController?.update(percent)
         } else if gesture.state == .ended || gesture.state == .cancelled || gesture.state == .failed {
-            let velocity = gesture.velocity(in: referenceSlideshowView)
+            let velocity = gesture.velocity(in: refView)
 
             if abs(velocity.y) > 500 {
-                if let pageSelected = referenceSlideshowController.pageSelected {
-                    pageSelected(referenceSlideshowController.slideshow.currentPage)
-                }
-
+                referenceSlideshowController.pageSelected?(referenceSlideshowController.slideshow.currentPage)
                 interactionController?.finish()
             } else if percent > 0.5 {
-                if let pageSelected = referenceSlideshowController.pageSelected {
-                    pageSelected(referenceSlideshowController.slideshow.currentPage)
-                }
-
+                referenceSlideshowController.pageSelected?(referenceSlideshowController.slideshow.currentPage)
                 interactionController?.finish()
             } else {
                 interactionController?.cancel()
