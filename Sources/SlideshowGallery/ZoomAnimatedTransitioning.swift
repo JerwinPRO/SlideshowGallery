@@ -37,16 +37,27 @@ class ZoomAnimatedTransitioningDelegate: NSObject, UIViewControllerTransitioning
 
         initialize()
     }
-
+    
     func initialize() {
         // Pan gesture recognizer for interactive dismiss
-        gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ZoomAnimatedTransitioningDelegate.handleSwipe(_:)))
+        gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
         gestureRecognizer.delegate = self
+
         // Append it to a window otherwise it will be canceled during the transition
-        UIApplication.shared.keyWindow?.addGestureRecognizer(gestureRecognizer)
+        if #available(iOS 13.0, *) {
+            // Find the active foreground window scene and its key window
+            if let windowScene = UIApplication.shared.connectedScenes
+                .compactMap({ $0 as? UIWindowScene })
+                .first(where: { $0.activationState == .foregroundActive }),
+               let window = windowScene.windows.first(where: { $0.isKeyWindow }) ?? windowScene.windows.first {
+                window.addGestureRecognizer(gestureRecognizer)
+            }
+        } else {
+            UIApplication.shared.keyWindow?.addGestureRecognizer(gestureRecognizer)
+        }
     }
 
-    @objc func handleSwipe(_ gesture: UIPanGestureRecognizer) {
+    @objc private func handleSwipe(_ gesture: UIPanGestureRecognizer) {
         guard let referenceSlideshowController = referenceSlideshowController,
               let refView = referenceSlideshowView else {
             return
